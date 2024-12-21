@@ -3,6 +3,7 @@
 import requests
 import schedule
 import time
+import keyboard
 
 API_BASE_URL = "http://IP_ADDR:8880/api/"
 API_USERNAME = "LOGIN"
@@ -30,4 +31,25 @@ schedule.every().day.at("22:00").do(stop_music)
 
 while True:
     schedule.run_pending()
+    time.sleep(1)
+
+while True:
+    schedule.run_pending()
+    if keyboard.is_pressed("ctrl+m"):
+        print("\nMenu:\n1. Play Music\n2. Stop Music\n3. Exit Menu")
+        while True:
+            choice = input("Choose an option: ")
+            if choice == "1":
+                play_music()
+                print("Music started.")
+                break
+            elif choice == "2":
+                stop_music()
+                print("Music stopped.")
+                break
+            elif choice == "3":
+                print("Exiting menu.")
+                break
+            else:
+                print("Invalid option. Try again.")
     time.sleep(1)
